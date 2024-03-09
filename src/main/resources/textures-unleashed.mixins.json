@@ -6,6 +6,7 @@
   "mixins": [
   ],
   "client": [
+    "SpriteLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

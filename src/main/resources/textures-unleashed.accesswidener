@@ -1,0 +1,7 @@
+accessWidener v2 named
+
+accessible field net/minecraft/client/renderer/texture/SpriteLoader location Lnet/minecraft/resources/ResourceLocation;
+accessible field net/minecraft/client/renderer/texture/SpriteLoader maxSupportedTextureSize I
+accessible field net/minecraft/client/renderer/texture/SpriteLoader minWidth I
+accessible field net/minecraft/client/renderer/texture/SpriteLoader minHeight I
+accessible method net/minecraft/client/renderer/texture/SpriteLoader getStitchedSprites (Lnet/minecraft/client/renderer/texture/Stitcher;II)Ljava/util/Map;
