@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "textures-unleashed",
+  "version": "${version}",
+  "name": "textures-unleashed",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/sidit77/textures-unleashed"
+  },
+  "license": "MIT",
+  "icon": "assets/textures-unleashed/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.github.sidit77.texturesunleashed.client.TexturesUnleashedClient"
+    ],
+    "main": [
+      "com.github.sidit77.texturesunleashed.TexturesUnleashed"
+    ]
+  },
+  "mixins": [
+    "textures-unleashed.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
