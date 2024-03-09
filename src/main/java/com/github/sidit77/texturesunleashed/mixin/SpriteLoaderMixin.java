@@ -33,6 +33,7 @@ abstract class SpriteLoaderMixin {
         index = 0)
     private List<SpriteContents> upscaleSprites(List<SpriteContents> list, int level, Executor executor) {
         if(TexturesUnleashed.UPSCALE_WHITELIST.contains(getLocation())) {
+            int maxRes = 1 << level;
             int targetLevel = Math.min(list
                             .stream()
                             .mapToInt(s -> Math.min(Integer.lowestOneBit(s.width()), Integer.lowestOneBit(s.height())))
@@ -40,16 +41,16 @@ abstract class SpriteLoaderMixin {
                             .orElse(1),
                     1 << level);
 
-            LOGGER.info("{}: Max Level {}", getLocation(), targetLevel);
+            LOGGER.debug("{}: Max Level {}", getLocation(), targetLevel);
 
             list = list.stream().map(s -> {
                 int factor = 0;
-                while (Math.max(s.width(), s.height()) << factor < TexturesUnleashed.MAX_UPSCALE_RESOLUTION &&
+                while (Math.min(s.width(), s.height()) << factor < maxRes &&
                         Math.min(Integer.lowestOneBit(s.width()), Integer.lowestOneBit(s.height())) << factor < targetLevel) {
                     factor++;
                 }
                 if(factor > 0) {
-                    LOGGER.info("Upscaling {} ({}x{}) by a factor of {}", s.name(), s.width(), s.height(), factor);
+                    LOGGER.trace("Upscaling {} ({}x{}) by a factor of {}", s.name(), s.width(), s.height(), factor);
                     s = upscale(s, factor);
                 }
                 return s;
