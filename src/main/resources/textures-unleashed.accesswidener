@@ -5,3 +5,4 @@ accessible field net/minecraft/client/renderer/texture/SpriteLoader maxSupported
 accessible field net/minecraft/client/renderer/texture/SpriteLoader minWidth I
 accessible field net/minecraft/client/renderer/texture/SpriteLoader minHeight I
 accessible method net/minecraft/client/renderer/texture/SpriteLoader getStitchedSprites (Lnet/minecraft/client/renderer/texture/Stitcher;II)Ljava/util/Map;
+accessible field net/minecraft/client/renderer/texture/SpriteContents originalImage Lcom/mojang/blaze3d/platform/NativeImage;
