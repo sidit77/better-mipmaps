@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(Options.class)
 abstract class OptionsMixin {
 
+    @SuppressWarnings("unchecked")
     @ModifyArg(
         method = "<init>",
         at = @At(
