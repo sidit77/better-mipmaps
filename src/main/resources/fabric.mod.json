@@ -6,7 +6,8 @@
   "description": "Unlocks mipmap levels higher than 4",
   "authors": ["sidit77"],
   "contact": {
-    "repo": "https://github.com/sidit77/better-mipmaps"
+    "sources": "https://github.com/sidit77/better-mipmaps",
+    "homepage": "https://modrinth.com/project/better-mipmaps"
   },
   "license": "MIT",
   "icon": "assets/better-mipmaps/icon.png",
