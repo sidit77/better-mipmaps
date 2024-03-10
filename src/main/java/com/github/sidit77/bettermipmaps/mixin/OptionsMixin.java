@@ -1,5 +1,6 @@
 package com.github.sidit77.bettermipmaps.mixin;
 
+import com.github.sidit77.bettermipmaps.BetterMipmaps;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +21,7 @@ abstract class OptionsMixin {
     public <T> OptionInstance.ValueSet<T> increaseMaxMipmapLevel(OptionInstance.ValueSet<T> valueSet) {
         OptionInstance.IntRange range = (OptionInstance.IntRange)valueSet;
         assert range.minInclusive() == 0 && range.maxInclusive() == 4;
-        return (OptionInstance.ValueSet<T>) new OptionInstance.IntRange(0, 10);
+        return (OptionInstance.ValueSet<T>) new OptionInstance.IntRange(0, BetterMipmaps.MAX_MIPMAP_LEVEL);
     }
 
 }

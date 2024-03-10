@@ -10,6 +10,7 @@ import java.util.Set;
 public class BetterMipmaps implements ModInitializer {
 
     public static Set<ResourceLocation> UPSCALE_WHITELIST = Collections.singleton(InventoryMenu.BLOCK_ATLAS);
+    public static int MAX_MIPMAP_LEVEL = 10;
 
     @Override
     public void onInitialize() {

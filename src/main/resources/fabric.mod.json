@@ -3,7 +3,7 @@
   "id": "better-mipmaps",
   "version": "${version}",
   "name": "Better Mipmaps",
-  "description": "",
+  "description": "Unlocks mipmap levels higher than 4",
   "authors": ["sidit77"],
   "contact": {
     "repo": "https://github.com/sidit77/better-mipmaps"
@@ -20,12 +20,12 @@
     ]
   },
   "mixins": [
-    "better-mipmaps.mixins.json"
+    "better-mipmaps.mixins.json",
+    "better-mipmaps.sodium.mixins.json"
   ],
   "accessWidener": "better-mipmaps.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": "*",
     "minecraft": "${minecraft_version}"
   }
 }
