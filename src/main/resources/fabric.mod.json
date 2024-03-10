@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "textures-unleashed",
+  "id": "better-mipmaps",
   "version": "${version}",
-  "name": "textures-unleashed",
+  "name": "Better Mipmaps",
   "description": "",
-  "authors": [],
+  "authors": ["sidit77"],
   "contact": {
-    "repo": "https://github.com/sidit77/textures-unleashed"
+    "repo": "https://github.com/sidit77/better-mipmaps"
   },
   "license": "MIT",
-  "icon": "assets/textures-unleashed/icon.png",
+  "icon": "assets/better-mipmaps/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "com.github.sidit77.texturesunleashed.client.TexturesUnleashedClient"
+      "com.github.sidit77.bettermipmaps.client.BetterMipmapsClient"
     ],
     "main": [
-      "com.github.sidit77.texturesunleashed.TexturesUnleashed"
+      "com.github.sidit77.bettermipmaps.BetterMipmaps"
     ]
   },
   "mixins": [
-    "textures-unleashed.mixins.json"
+    "better-mipmaps.mixins.json"
   ],
-  "accessWidener": "textures-unleashed.accesswidener",
+  "accessWidener": "better-mipmaps.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",

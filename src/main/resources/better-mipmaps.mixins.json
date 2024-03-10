@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.github.sidit77.texturesunleashed.mixin",
+  "package": "com.github.sidit77.bettermipmaps.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],

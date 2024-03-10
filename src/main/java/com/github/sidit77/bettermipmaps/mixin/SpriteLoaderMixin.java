@@ -1,6 +1,6 @@
-package com.github.sidit77.texturesunleashed.mixin;
+package com.github.sidit77.bettermipmaps.mixin;
 
-import com.github.sidit77.texturesunleashed.TexturesUnleashed;
+import com.github.sidit77.bettermipmaps.BetterMipmaps;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -32,7 +32,7 @@ abstract class SpriteLoaderMixin {
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/SpriteLoader;stitch(Ljava/util/List;ILjava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/SpriteLoader$Preparations;"),
         index = 0)
     private List<SpriteContents> upscaleSprites(List<SpriteContents> list, int level, Executor executor) {
-        if(TexturesUnleashed.UPSCALE_WHITELIST.contains(getLocation())) {
+        if(BetterMipmaps.UPSCALE_WHITELIST.contains(getLocation())) {
             int maxRes = 1 << level;
             int targetLevel = Math.min(list
                             .stream()

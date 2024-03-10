@@ -1,4 +1,4 @@
-package com.github.sidit77.texturesunleashed.mixin;
+package com.github.sidit77.bettermipmaps.mixin;
 
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
