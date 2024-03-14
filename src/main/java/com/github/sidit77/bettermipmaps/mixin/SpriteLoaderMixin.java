@@ -1,6 +1,7 @@
 package com.github.sidit77.bettermipmaps.mixin;
 
 import com.github.sidit77.bettermipmaps.BetterMipmaps;
+import com.github.sidit77.bettermipmaps.client.SpriteContentsMetadata;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -68,7 +69,7 @@ abstract class SpriteLoaderMixin {
                 out.fillRect(x << factor, y << factor, 1 << factor, 1 << factor, in.getPixelRGBA(x, y));
             }
         }
-        return new SpriteContents(original.name(), new FrameSize(original.width() << factor, original.height() << factor), out, original.metadata());
+        return new SpriteContents(original.name(), new FrameSize(original.width() << factor, original.height() << factor), out, ((SpriteContentsMetadata)original).metadata());
     }
 
 }
