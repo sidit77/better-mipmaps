@@ -15,7 +15,7 @@ abstract class OptionsMixin {
         method = "<init>",
         at = @At(
             value = "INVOKE",
-            ordinal = 14,
+            ordinal = 15,
             target = "Lnet/minecraft/client/OptionInstance;<init>(Ljava/lang/String;Lnet/minecraft/client/OptionInstance$TooltipSupplier;Lnet/minecraft/client/OptionInstance$CaptionBasedToString;Lnet/minecraft/client/OptionInstance$ValueSet;Ljava/lang/Object;Ljava/util/function/Consumer;)V"),
         index = 3
     )
