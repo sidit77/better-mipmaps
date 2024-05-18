@@ -8,7 +8,7 @@
   "client": [
     "SpriteLoaderMixin",
     "SpriteContentsMixin",
-    "OptionsMixin"
+    "OptionInstanceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
