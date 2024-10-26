@@ -65,7 +65,7 @@ abstract class SpriteLoaderMixin {
         NativeImage out = new NativeImage(in.format(), in.getWidth() << factor, in.getHeight() << factor, false);
         for(int x = 0; x < in.getWidth(); x++) {
             for(int y = 0; y < in.getHeight(); y++) {
-                out.fillRect(x << factor, y << factor, 1 << factor, 1 << factor, in.getPixelRGBA(x, y));
+                out.fillRect(x << factor, y << factor, 1 << factor, 1 << factor, in.getPixel(x, y));
             }
         }
         return new SpriteContents(original.name(), new FrameSize(original.width() << factor, original.height() << factor), out, original.metadata());

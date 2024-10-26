@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
+//default settings: Shift + p
 public class SodiumMixinPlugin implements IMixinConfigPlugin {
 
     @Override
