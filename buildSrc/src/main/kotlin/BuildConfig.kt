@@ -3,9 +3,11 @@ object BuildConfig {
     //https://modmuss50.me/fabric.html
     //https://parchmentmc.org/docs/getting-started
     //https://modrinth.com/mod/sodium/versions
+    //https://neoforged.net/
     const val MINECRAFT_VERSION: String = "1.21.6"
     const val MOD_VERSION: String = "0.2.1"
     const val FABRIC_LOADER_VERSION: String = "0.16.14"
+    const val NEOFORGE_VERSION: String = "21.6.20-beta"
 
     const val SODIUM_VERSION: String = "mc1.21.6-0.6.13"
     const val FABRIC_API_VERSION: String = "0.128.0+1.21.6"
@@ -22,4 +24,5 @@ object BuildConfig {
 
     const val COMMON_ARCHIVES_NAME: String = "${BASE_ARCHIVES_NAME}-common"
     const val FABRIC_ARCHIVES_NAME: String = "${BASE_ARCHIVES_NAME}-fabric"
+    const val NEOFORGE_ARCHIVES_NAME: String = "${BASE_ARCHIVES_NAME}-neoforge"
 }

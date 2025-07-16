@@ -30,12 +30,14 @@ tasks {
         inputs.property("version", version)
         inputs.property("minecraft_version", BuildConfig.MINECRAFT_VERSION)
         inputs.property("fabric_loader_version", BuildConfig.FABRIC_LOADER_VERSION)
+        inputs.property("neoforge_version", BuildConfig.NEOFORGE_VERSION)
 
         filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) {
             expand(mapOf(
                 "version" to inputs.properties["version"],
                 "minecraft_version" to inputs.properties["minecraft_version"],
-                "fabric_loader_version" to inputs.properties["fabric_loader_version"]
+                "fabric_loader_version" to inputs.properties["fabric_loader_version"],
+                "neoforge_version" to inputs.properties["neoforge_version"]
             ))
         }
     }
