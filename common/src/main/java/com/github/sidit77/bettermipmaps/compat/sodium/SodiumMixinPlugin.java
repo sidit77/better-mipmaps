@@ -1,6 +1,6 @@
 package com.github.sidit77.bettermipmaps.compat.sodium;
 
-import net.fabricmc.loader.api.FabricLoader;
+import com.github.sidit77.bettermipmaps.PlatformRuntimeInformation;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,7 +13,7 @@ public class SodiumMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return FabricLoader.getInstance().isModLoaded("sodium");
+        return PlatformRuntimeInformation.getInstance().isModLoaded("sodium");
     }
 
     @Override

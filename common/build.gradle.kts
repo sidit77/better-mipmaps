@@ -18,8 +18,14 @@ dependencies {
         }
     })
 
+    compileOnly(group = "org.ow2.asm", name = "asm-tree", version = "9.8")
     compileOnly(group = "org.spongepowered", name = "mixin", version = "0.8.5")
+
+    compileOnly(group = "io.github.llamalad7", name = "mixinextras-common", version = "0.3.5")
+    annotationProcessor(group = "io.github.llamalad7", name = "mixinextras-common", version = "0.3.5")
+
     compileOnly(group = "net.fabricmc", name= "fabric-loader", version = BuildConfig.FABRIC_LOADER_VERSION)
+    modCompileOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
 }
 
 loom {

@@ -31,8 +31,6 @@ dependencies {
     })
     modImplementation(group = "net.fabricmc", name = "fabric-loader", version = BuildConfig.FABRIC_LOADER_VERSION)
 
-    modCompileOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
-
     modRuntimeOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
     modRuntimeOnly(group = "net.fabricmc.fabric-api", name = "fabric-api", version = BuildConfig.FABRIC_API_VERSION)
 }

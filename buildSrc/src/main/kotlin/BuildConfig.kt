@@ -21,6 +21,7 @@ object BuildConfig {
     const val BUILD_VERSION: String = "${MOD_VERSION}+mc${MINECRAFT_VERSION}"
 
     const val SODIUM_FABRIC_VERSION: String = "${SODIUM_VERSION}-fabric"
+    const val NEOFORGE_FABRIC_VERSION: String = "${SODIUM_VERSION}-neoforge"
 
     const val COMMON_ARCHIVES_NAME: String = "${BASE_ARCHIVES_NAME}-common"
     const val FABRIC_ARCHIVES_NAME: String = "${BASE_ARCHIVES_NAME}-fabric"

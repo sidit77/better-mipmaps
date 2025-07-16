@@ -17,6 +17,8 @@ description = '''Unlocks mipmap levels higher than 4'''#mandatory Supports multi
 [[mixins]]
 config = "better_mipmaps.mixins.json"
 [[mixins]]
+config = "better_mipmaps.sodium.mixins.json"
+[[mixins]]
 config = "better_mipmaps.neoforge.mixins.json"
 
 [[dependencies."better_mipmaps"]]

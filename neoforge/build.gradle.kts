@@ -7,6 +7,10 @@ base {
     archivesName = BuildConfig.NEOFORGE_ARCHIVES_NAME
 }
 
+dependencies {
+    runtimeOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.NEOFORGE_FABRIC_VERSION)
+}
+
 neoForge {
     version = BuildConfig.NEOFORGE_VERSION
 
