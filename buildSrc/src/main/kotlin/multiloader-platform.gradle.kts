@@ -6,8 +6,8 @@ plugins {
 tasks {
     processResources {
         inputs.property("version", version)
-        inputs.property("minecraft_version", properties["minecraft_version"])
-        inputs.property("fabric_loader_version", properties["fabric_loader_version"])
+        inputs.property("minecraft_version", BuildConfig.MINECRAFT_VERSION)
+        inputs.property("fabric_loader_version", BuildConfig.FABRIC_LOADER_VERSION)
 
         filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) {
             expand(mapOf(

@@ -22,24 +22,19 @@ loom {
 }
 
 dependencies {
-    val minecraft_version = properties["minecraft_version"]
-    val fabric_loader_version = properties["fabric_loader_version"]
-    val parchment_version = properties["parchment_version"]
-    val sodium_version = properties["sodium_version"]
-    val fabric_api_version = properties["fabric_api_version"]
-
-    minecraft("com.mojang:minecraft:${minecraft_version}")
+    minecraft("com.mojang:minecraft:${BuildConfig.MINECRAFT_VERSION}")
     mappings(loom.layered {
         officialMojangMappings()
-
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+        if (BuildConfig.PARCHMENT_VERSION != null) {
+            parchment("org.parchmentmc.data:parchment-${BuildConfig.MINECRAFT_VERSION}:${BuildConfig.PARCHMENT_VERSION}@zip")
+        }
     })
-    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    modImplementation("net.fabricmc:fabric-loader:${BuildConfig.FABRIC_LOADER_VERSION}")
 
-    modCompileOnly("maven.modrinth:sodium:${sodium_version}-fabric")
+    modCompileOnly("maven.modrinth:sodium:${BuildConfig.SODIUM_VERSION}-fabric")
 
-    modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-fabric")
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+    modRuntimeOnly("maven.modrinth:sodium:${BuildConfig.SODIUM_VERSION}-fabric")
+    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${BuildConfig.FABRIC_API_VERSION}")
 }
 
 tasks {

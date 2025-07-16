@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.sidit77"
-version = "${properties["mod_version"]}+mc${properties["minecraft_version"]}"
+version = BuildConfig.BUILD_VERSION
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
