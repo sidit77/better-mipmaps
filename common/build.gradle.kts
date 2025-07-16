@@ -1,0 +1,26 @@
+plugins {
+    id("multiloader-base")
+    id("java-library")
+
+    id("fabric-loom")
+}
+
+base {
+    archivesName = BuildConfig.COMMON_ARCHIVES_NAME
+}
+
+dependencies {
+    minecraft(group = "com.mojang", name = "minecraft", version = BuildConfig.MINECRAFT_VERSION)
+    mappings(loom.layered {
+        officialMojangMappings()
+        if (BuildConfig.PARCHMENT_VERSION != null) {
+            parchment("org.parchmentmc.data:parchment-${BuildConfig.MINECRAFT_VERSION}:${BuildConfig.PARCHMENT_VERSION}@zip")
+        }
+    })
+
+    compileOnly(group = "org.spongepowered", name = "mixin", version = "0.8.5")
+}
+
+loom {
+    accessWidenerPath.set(file("src/main/resources/better-mipmaps-common.accesswidener"))
+}

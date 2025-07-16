@@ -6,7 +6,10 @@ plugins {
 group = "com.github.sidit77"
 version = BuildConfig.BUILD_VERSION
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -40,5 +43,15 @@ repositories {
         filter {
             includeGroup("org.parchmentmc.data")
         }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Sponge"
+                url = uri("https://repo.spongepowered.org/repository/maven-public")
+            }
+        }
+        filter { includeGroupAndSubgroups("org.spongepowered") }
     }
 }

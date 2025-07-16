@@ -1,10 +1,10 @@
 plugins {
     id("multiloader-platform")
-    id("fabric-loom") version ("1.10.1")
+    id("fabric-loom")
 }
 
 base {
-    archivesName = "better-mipmaps-fabric"
+    archivesName = BuildConfig.FABRIC_ARCHIVES_NAME
 }
 
 loom {
@@ -22,19 +22,19 @@ loom {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${BuildConfig.MINECRAFT_VERSION}")
+    minecraft(group = "com.mojang", name = "minecraft", version = BuildConfig.MINECRAFT_VERSION)
     mappings(loom.layered {
         officialMojangMappings()
         if (BuildConfig.PARCHMENT_VERSION != null) {
             parchment("org.parchmentmc.data:parchment-${BuildConfig.MINECRAFT_VERSION}:${BuildConfig.PARCHMENT_VERSION}@zip")
         }
     })
-    modImplementation("net.fabricmc:fabric-loader:${BuildConfig.FABRIC_LOADER_VERSION}")
+    modImplementation(group = "net.fabricmc", name = "fabric-loader", version = BuildConfig.FABRIC_LOADER_VERSION)
 
-    modCompileOnly("maven.modrinth:sodium:${BuildConfig.SODIUM_VERSION}-fabric")
+    modCompileOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
 
-    modRuntimeOnly("maven.modrinth:sodium:${BuildConfig.SODIUM_VERSION}-fabric")
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${BuildConfig.FABRIC_API_VERSION}")
+    modRuntimeOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
+    modRuntimeOnly(group = "net.fabricmc.fabric-api", name = "fabric-api", version = BuildConfig.FABRIC_API_VERSION)
 }
 
 tasks {

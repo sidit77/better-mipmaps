@@ -3,6 +3,18 @@ plugins {
     id("maven-publish")
 }
 
+val configurationCommonModJava: Configuration = configurations.create("commonJava") {
+    isCanBeResolved = true
+}
+val configurationCommonModResources: Configuration = configurations.create("commonResources") {
+    isCanBeResolved = true
+}
+
+dependencies {
+    configurationCommonModJava(project(":common", configuration = "commonJava"))
+    configurationCommonModResources(project(":common", configuration = "commonResources"))
+}
+
 tasks {
     processResources {
         inputs.property("version", version)
