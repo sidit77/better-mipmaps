@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -27,14 +27,13 @@ abstract class SpriteLoaderMixin {
     @Accessor
     abstract ResourceLocation getLocation();
 
-    @ModifyArg(
-        method = "method_47659",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/SpriteLoader;stitch(Ljava/util/List;ILjava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/SpriteLoader$Preparations;"),
-        index = 0)
-    private List<SpriteContents> upscaleSprites(List<SpriteContents> list, int level, Executor executor) {
+    @ModifyVariable(
+            method = "stitch(Ljava/util/List;ILjava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/SpriteLoader$Preparations;",
+            at = @At("HEAD"), index = 1, argsOnly = true)
+    private List<SpriteContents> upscaleSprites(List<SpriteContents> target, List<SpriteContents> contents, int level, Executor executor) {
         if(Constants.UPSCALE_WHITELIST.contains(getLocation())) {
             int maxRes = 1 << level;
-            int targetLevel = Math.min(list
+            int targetLevel = Math.min(target
                             .stream()
                             .mapToInt(s -> Math.min(Integer.lowestOneBit(s.width()), Integer.lowestOneBit(s.height())))
                             .max()
@@ -43,7 +42,7 @@ abstract class SpriteLoaderMixin {
 
             better_mipmaps$LOGGER.debug("{}: Max Level {}", getLocation(), targetLevel);
 
-            list = list.stream().map(s -> {
+            target = target.stream().map(s -> {
                 int factor = 0;
                 while (Math.min(s.width(), s.height()) << factor < maxRes &&
                         Math.min(Integer.lowestOneBit(s.width()), Integer.lowestOneBit(s.height())) << factor < targetLevel) {
@@ -56,7 +55,7 @@ abstract class SpriteLoaderMixin {
                 return s;
             }).collect(Collectors.toList());
         }
-        return list;
+        return target;
     }
 
     @Unique

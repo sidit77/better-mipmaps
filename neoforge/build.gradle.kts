@@ -27,6 +27,7 @@ neoForge {
     mods {
         create("better_mipmaps") {
             sourceSet(sourceSets["main"])
+            sourceSet(project(":common").sourceSets["main"])
         }
     }
 }

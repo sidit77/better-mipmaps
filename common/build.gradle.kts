@@ -19,6 +19,7 @@ dependencies {
     })
 
     compileOnly(group = "org.spongepowered", name = "mixin", version = "0.8.5")
+    compileOnly(group = "net.fabricmc", name= "fabric-loader", version = BuildConfig.FABRIC_LOADER_VERSION)
 }
 
 loom {
