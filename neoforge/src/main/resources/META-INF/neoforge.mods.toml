@@ -4,7 +4,7 @@ license = "MIT"
 issueTrackerURL="https://github.com/sidit77/better-mipmaps/issues"
 
 [[mods]] #mandatory
-modId = "better-mipmaps" #mandatory
+modId = "better_mipmaps" #mandatory
 version = "${version}" #mandatory
 displayName = "Better Mipmaps" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional, see https://docs.neoforged.net/docs/misc/updatechecker/
@@ -15,18 +15,18 @@ authors = "sidit77" #optional
 description = '''Unlocks mipmap levels higher than 4'''#mandatory Supports multiline text
 
 [[mixins]]
-config = "better-mipmaps.mixins.json"
+config = "better_mipmaps.mixins.json"
 [[mixins]]
-config = "better-mipmaps.neoforge.mixins.json"
+config = "better_mipmaps.neoforge.mixins.json"
 
-[[dependencies."better-mipmaps"]]
+[[dependencies."better_mipmaps"]]
 modId = "minecraft"
 type = "required" #mandatory Can be one of "required", "optional", "incompatible" or "discouraged"
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies."better-mipmaps"]] #optional
+[[dependencies."better_mipmaps"]] #optional
 modId = "neoforge" #mandatory
 type = "required" #mandatory Can be one of "required", "optional", "incompatible" or "discouraged"
 versionRange = "[${neoforge_version},)" #mandatory

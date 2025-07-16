@@ -22,7 +22,7 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath.set(file("src/main/resources/better-mipmaps-common.accesswidener"))
+    accessWidenerPath.set(file("src/main/resources/better_mipmaps.accesswidener"))
 }
 
 val commonJava by configurations.creating {

@@ -8,7 +8,7 @@ base {
 }
 
 loom {
-    accessWidenerPath.set(file("src/main/resources/better-mipmaps.accesswidener"))
+    //accessWidenerPath.set(file("src/main/resources/better-mipmaps.accesswidener"))
 
     runs {
         named("client") {
