@@ -24,3 +24,18 @@ dependencies {
 loom {
     accessWidenerPath.set(file("src/main/resources/better-mipmaps-common.accesswidener"))
 }
+
+val commonJava by configurations.creating {
+    isCanBeConsumed = true
+    isCanBeResolved = false
+}
+
+val commonResources by configurations.creating {
+    isCanBeConsumed = true
+    isCanBeResolved = false
+}
+
+artifacts {
+    add(commonJava.name, tasks.jar)
+    add(commonResources.name, tasks.processResources)
+}

@@ -1,6 +1,6 @@
 package com.github.sidit77.bettermipmaps.mixin;
 
-import com.github.sidit77.bettermipmaps.BetterMipmaps;
+import com.github.sidit77.bettermipmaps.Constants;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.OptionInstance;
 import org.spongepowered.asm.mixin.Final;
@@ -41,7 +41,7 @@ public class OptionInstanceMixin {
             CallbackInfo ci)
     {
         if(string.equals("options.mipmapLevels")) {
-            this.values = new OptionInstance.IntRange(0, BetterMipmaps.MAX_MIPMAP_LEVEL);
+            this.values = new OptionInstance.IntRange(0, Constants.MAX_MIPMAP_LEVEL);
             this.codec = this.values.codec();
         }
 

@@ -1,6 +1,6 @@
 package com.github.sidit77.bettermipmaps.mixin;
 
-import com.github.sidit77.bettermipmaps.BetterMipmaps;
+import com.github.sidit77.bettermipmaps.Constants;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 abstract class SpriteLoaderMixin {
 
     @Unique
-    private static final Logger LOGGER = LogUtils.getLogger();
+    private static final Logger better_mipmaps$LOGGER = LogUtils.getLogger();
 
     @Accessor
     abstract ResourceLocation getLocation();
@@ -32,7 +32,7 @@ abstract class SpriteLoaderMixin {
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/SpriteLoader;stitch(Ljava/util/List;ILjava/util/concurrent/Executor;)Lnet/minecraft/client/renderer/texture/SpriteLoader$Preparations;"),
         index = 0)
     private List<SpriteContents> upscaleSprites(List<SpriteContents> list, int level, Executor executor) {
-        if(BetterMipmaps.UPSCALE_WHITELIST.contains(getLocation())) {
+        if(Constants.UPSCALE_WHITELIST.contains(getLocation())) {
             int maxRes = 1 << level;
             int targetLevel = Math.min(list
                             .stream()
@@ -41,7 +41,7 @@ abstract class SpriteLoaderMixin {
                             .orElse(1),
                     1 << level);
 
-            LOGGER.debug("{}: Max Level {}", getLocation(), targetLevel);
+            better_mipmaps$LOGGER.debug("{}: Max Level {}", getLocation(), targetLevel);
 
             list = list.stream().map(s -> {
                 int factor = 0;
@@ -50,8 +50,8 @@ abstract class SpriteLoaderMixin {
                     factor++;
                 }
                 if(factor > 0) {
-                    LOGGER.trace("Upscaling {} ({}x{}) by a factor of {}", s.name(), s.width(), s.height(), factor);
-                    s = upscale(s, factor);
+                    better_mipmaps$LOGGER.trace("Upscaling {} ({}x{}) by a factor of {}", s.name(), s.width(), s.height(), factor);
+                    s = better_mipmaps$upscale(s, factor);
                 }
                 return s;
             }).collect(Collectors.toList());
@@ -60,7 +60,7 @@ abstract class SpriteLoaderMixin {
     }
 
     @Unique
-    private SpriteContents upscale(SpriteContents original, int factor) {
+    private SpriteContents better_mipmaps$upscale(SpriteContents original, int factor) {
         NativeImage in = original.originalImage;
         NativeImage out = new NativeImage(in.format(), in.getWidth() << factor, in.getHeight() << factor, false);
         for(int x = 0; x < in.getWidth(); x++) {

@@ -3,20 +3,30 @@ plugins {
     id("maven-publish")
 }
 
-val configurationCommonModJava: Configuration = configurations.create("commonJava") {
+val commonJava by configurations.creating {
     isCanBeResolved = true
 }
-val configurationCommonModResources: Configuration = configurations.create("commonResources") {
+
+val commonResources by configurations.creating {
     isCanBeResolved = true
 }
 
 dependencies {
-    configurationCommonModJava(project(":common", configuration = "commonJava"))
-    configurationCommonModResources(project(":common", configuration = "commonResources"))
+    commonJava(project(":common", configuration = "commonJava"))
+    commonResources(project(":common", configuration = "commonResources"))
+}
+
+sourceSets.apply {
+    main {
+        compileClasspath += commonJava
+        runtimeClasspath += commonJava
+    }
 }
 
 tasks {
     processResources {
+        from(commonResources)
+
         inputs.property("version", version)
         inputs.property("minecraft_version", BuildConfig.MINECRAFT_VERSION)
         inputs.property("fabric_loader_version", BuildConfig.FABRIC_LOADER_VERSION)
@@ -31,9 +41,11 @@ tasks {
     }
 
     jar {
+        from(commonJava)
         duplicatesStrategy = DuplicatesStrategy.FAIL
         from(rootDir.resolve("LICENSE.md"))
     }
+
 }
 
 publishing {

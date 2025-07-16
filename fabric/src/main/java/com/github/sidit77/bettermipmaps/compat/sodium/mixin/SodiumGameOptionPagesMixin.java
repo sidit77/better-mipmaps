@@ -1,6 +1,6 @@
 package com.github.sidit77.bettermipmaps.compat.sodium.mixin;
 
-import com.github.sidit77.bettermipmaps.BetterMipmaps;
+import com.github.sidit77.bettermipmaps.Constants;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.caffeinemc.mods.sodium.client.gui.SodiumGameOptionPages;
@@ -22,7 +22,7 @@ abstract class SodiumGameOptionPagesMixin {
         if(!option.getName().getString().equals(Minecraft.getInstance().options.mipmapLevels().toString()))
             return option;
         return builder
-                .setControl(o -> new SliderControl((Option<Integer>) o, 0, BetterMipmaps.MAX_MIPMAP_LEVEL, 1, ControlValueFormatter.multiplier()))
+                .setControl(o -> new SliderControl((Option<Integer>) o, 0, Constants.MAX_MIPMAP_LEVEL, 1, ControlValueFormatter.multiplier()))
                 .build();
     }
 
