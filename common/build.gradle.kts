@@ -1,48 +1,44 @@
-plugins {
-    id("multiloader-base")
-    id("java-library")
+import net.fabricmc.loom.task.AbstractRemapJarTask
 
+plugins {
+    id("java")
+    id("idea")
     id("fabric-loom")
 }
 
-base {
-    archivesName = BuildConfig.COMMON_ARCHIVES_NAME
-}
+val MINECRAFT_VERSION: String by rootProject.extra
+val PARCHMENT_VERSION: String? by rootProject.extra
+val FABRIC_LOADER_VERSION: String by rootProject.extra
+val FABRIC_API_VERSION: String by rootProject.extra
+
+val SODIUM_VERSION: String by rootProject.extra
+
 
 dependencies {
-    minecraft(group = "com.mojang", name = "minecraft", version = BuildConfig.MINECRAFT_VERSION)
+    minecraft(group = "com.mojang", name = "minecraft", version = MINECRAFT_VERSION)
     mappings(loom.layered {
         officialMojangMappings()
-        if (BuildConfig.PARCHMENT_VERSION != null) {
-            parchment("org.parchmentmc.data:parchment-${BuildConfig.MINECRAFT_VERSION}:${BuildConfig.PARCHMENT_VERSION}@zip")
+        if (PARCHMENT_VERSION != null) {
+            parchment("org.parchmentmc.data:parchment-${MINECRAFT_VERSION}:${PARCHMENT_VERSION}@zip")
         }
     })
 
-    compileOnly(group = "org.ow2.asm", name = "asm-tree", version = "9.8")
-    compileOnly(group = "org.spongepowered", name = "mixin", version = "0.8.5")
+    compileOnly(group = "net.fabricmc", name = "sponge-mixin", version = "0.13.2+mixin.0.8.5")
 
     compileOnly(group = "io.github.llamalad7", name = "mixinextras-common", version = "0.3.5")
     annotationProcessor(group = "io.github.llamalad7", name = "mixinextras-common", version = "0.3.5")
 
-    compileOnly(group = "net.fabricmc", name= "fabric-loader", version = BuildConfig.FABRIC_LOADER_VERSION)
-    modCompileOnly(group = "maven.modrinth", name = "sodium", version = BuildConfig.SODIUM_FABRIC_VERSION)
+    modCompileOnly(group = "net.fabricmc", name= "fabric-loader", version = FABRIC_LOADER_VERSION)
+    modCompileOnly(group = "maven.modrinth", name = "sodium", version = "$SODIUM_VERSION-fabric")
+}
+
+tasks.withType<AbstractRemapJarTask>().forEach {
+    it.targetNamespace = "named"
 }
 
 loom {
-    accessWidenerPath.set(file("src/main/resources/better_mipmaps.accesswidener"))
-}
-
-val commonJava by configurations.creating {
-    isCanBeConsumed = true
-    isCanBeResolved = false
-}
-
-val commonResources by configurations.creating {
-    isCanBeConsumed = true
-    isCanBeResolved = false
-}
-
-artifacts {
-    add(commonJava.name, tasks.jar)
-    add(commonResources.name, tasks.processResources)
+    accessWidenerPath = file("src/main/resources/better_mipmaps.accesswidener")
+    mixin {
+        defaultRefmapName = "better_mipmaps.refmap.json"
+    }
 }
