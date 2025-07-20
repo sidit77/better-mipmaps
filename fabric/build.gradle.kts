@@ -8,7 +8,7 @@ val MINECRAFT_VERSION: String by rootProject.extra
 val PARCHMENT_VERSION: String? by rootProject.extra
 val FABRIC_LOADER_VERSION: String by rootProject.extra
 val FABRIC_API_VERSION: String by rootProject.extra
-val MOD_VERSION: String by rootProject.extra
+
 val ARCHIVE_NAME: String by rootProject.extra
 
 val SODIUM_VERSION: String by rootProject.extra
