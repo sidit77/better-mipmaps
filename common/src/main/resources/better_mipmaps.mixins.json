@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "com.github.sidit77.bettermipmaps.mixin",
+  "refmap": "better_mipmaps.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "client": [
     "OptionInstanceMixin",
@@ -8,6 +9,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "better_mipmaps.refmap.json"
+  }
 }

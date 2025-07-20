@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.LineContains
+
 plugins {
     id("idea")
     id("net.neoforged.moddev")
@@ -74,6 +76,10 @@ tasks {
                     "neoforge_version" to NEOFORGE_VERSION
                 )
             )
+        }
+
+        filesMatching("*.mixins.json") {
+            filter<LineContains>("negate" to true, "contains" to setOf("refmap"))
         }
     }
 
