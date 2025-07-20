@@ -4,6 +4,10 @@ plugins {
     id("net.neoforged.moddev") version "2.0.78" apply false
 }
 
+//https://modmuss50.me/fabric.html
+//https://parchmentmc.org/docs/getting-started
+//https://modrinth.com/mod/sodium/versions
+//https://neoforged.net/
 val MINECRAFT_VERSION by extra { "1.21.6" }
 val NEOFORGE_VERSION by extra { "21.6.4-beta" }
 val FABRIC_LOADER_VERSION by extra { "0.16.14" }
@@ -36,25 +40,10 @@ subprojects {
         maven("https://api.modrinth.com/maven")
     }
 
-    base {
-        archivesName = ARCHIVE_NAME
-    }
-
     java {
         toolchain.languageVersion = JavaLanguageVersion.of(21)
         withSourcesJar()
     }
-
-    //tasks.processResources {
-    //    filesMatching(listOf("fabric.mod.json", "META-INF/neoforge.mods.toml")) {
-    //        expand(mapOf(
-    //            "version" to createVersionString(),
-    //            "minecraft_version" to MINECRAFT_VERSION,
-    //            "fabric_loader_version" to FABRIC_LOADER_VERSION,
-    //            "neoforge_version" to NEOFORGE_VERSION
-    //        ))
-    //    }
-    //}
 
     version = createVersionString()
     group = "com.github.sidit77"
