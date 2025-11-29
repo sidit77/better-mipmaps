@@ -1,6 +1,7 @@
 package com.github.sidit77.bettermipmaps.mixin;
 
 import com.github.sidit77.bettermipmaps.BetterMipmaps;
+import com.github.sidit77.bettermipmaps.client.SpriteContentsExtension;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -61,14 +62,24 @@ abstract class SpriteLoaderMixin {
 
     @Unique
     private SpriteContents upscale(SpriteContents original, int factor) {
-        NativeImage in = original.originalImage;
+        NativeImage in = ((SpriteContentsAccessor)original).getOriginalImage();
         NativeImage out = new NativeImage(in.format(), in.getWidth() << factor, in.getHeight() << factor, false);
         for(int x = 0; x < in.getWidth(); x++) {
             for(int y = 0; y < in.getHeight(); y++) {
                 out.fillRect(x << factor, y << factor, 1 << factor, 1 << factor, in.getPixel(x, y));
             }
         }
-        return new SpriteContents(original.name(), new FrameSize(original.width() << factor, original.height() << factor), out, original.metadata());
+
+        SpriteContents upscaled = new SpriteContents(
+                original.name(),
+                new FrameSize(original.width() << factor, original.height() << factor),
+                out,
+                ((SpriteContentsExtension)original).better_mipmaps$getAnimationMetadata(),
+                ((SpriteContentsAccessor)original).getAdditionalMetadata()
+        );
+
+        original.close();
+        return upscaled;
     }
 
 }
