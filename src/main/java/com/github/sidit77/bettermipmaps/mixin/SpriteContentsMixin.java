@@ -5,7 +5,8 @@ import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.resources.metadata.texture.TextureMetadataSection;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.metadata.MetadataSectionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,20 +24,31 @@ public abstract class SpriteContentsMixin implements SpriteContentsExtension {
     @Unique
     private Optional<AnimationMetadataSection> animationMetadata;
 
-    @Inject(method = "<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/resources/metadata/animation/FrameSize;Lcom/mojang/blaze3d/platform/NativeImage;Ljava/util/Optional;Ljava/util/List;)V", at = @At("TAIL"))
-    public void saveAnimationMetadata(ResourceLocation resourceLocation,
+    @Unique
+    private Optional<TextureMetadataSection> textureMetadata;
+
+    @Inject(method = "<init>(Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/resources/metadata/animation/FrameSize;Lcom/mojang/blaze3d/platform/NativeImage;Ljava/util/Optional;Ljava/util/List;Ljava/util/Optional;)V", at = @At("TAIL"))
+    public void saveAnimationMetadata(Identifier identifier,
                                       FrameSize frameSize,
                                       NativeImage nativeImage,
                                       Optional<AnimationMetadataSection> optional,
                                       List<MetadataSectionType.WithValue<?>> list,
+                                      Optional<TextureMetadataSection> optional2,
                                       CallbackInfo ci) {
         animationMetadata = optional;
+        textureMetadata = optional2;
     }
 
     @Override
     @Unique
     public Optional<AnimationMetadataSection> better_mipmaps$getAnimationMetadata() {
         return animationMetadata;
+    }
+
+    @Override
+    @Unique
+    public Optional<TextureMetadataSection> better_mipmaps$getTextureMetadata() {
+        return textureMetadata;
     }
 
 }
