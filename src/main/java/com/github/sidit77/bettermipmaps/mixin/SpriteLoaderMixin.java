@@ -7,7 +7,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.SpriteLoader;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,7 +26,7 @@ abstract class SpriteLoaderMixin {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     @Accessor
-    abstract ResourceLocation getLocation();
+    abstract Identifier getLocation();
 
     @ModifyArg(
         method = "method_47659",
@@ -75,7 +75,8 @@ abstract class SpriteLoaderMixin {
                 new FrameSize(original.width() << factor, original.height() << factor),
                 out,
                 ((SpriteContentsExtension)original).better_mipmaps$getAnimationMetadata(),
-                ((SpriteContentsAccessor)original).getAdditionalMetadata()
+                ((SpriteContentsAccessor)original).getAdditionalMetadata(),
+                ((SpriteContentsExtension)original).better_mipmaps$getTextureMetadata()
         );
 
         original.close();
